@@ -1,0 +1,74 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Upload || Subadmin</title>
+    <style>
+        * {
+            font-family: sans-serif;
+            padding: 0;
+            
+            margin: 0;
+        }
+        div {
+            width: 190px;
+            margin-top: 30px;
+            padding-left: 20;
+            font-size: 15px;
+
+        }
+        .title {
+            width: 300px;
+            margin: 43px 0px;
+            height: 30px;
+        }
+        nav{
+            background-color: black;
+            color: white;
+            padding: 20px;
+        }
+        input {
+            padding: 7px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+
+        }
+        p.head {
+            font-size: 30px;
+            font-weight: ;
+            margin: 20px 0px 0px 30px;
+        }
+        p {
+            margin-top: 12px;
+            margin-left: 30px;
+            margin-bottom: 10px;
+
+        }
+        a{
+            margin-top: 19px;
+            margin-left: 30px;
+        }
+
+       
+    </style>
+</head>
+<nav>
+    <h3>User upload || Subadmin</h3>
+</nav>
+{% if user.is_authenticated %}
+<p class="head">Logged In</p>
+<p>You are Logged in already. Click the link below to upload files</p>
+<a href="{% url 'main-upload' %}">Main-upload</a>
+{% else %}
+    <form method="POST" enctype="multipart/form-data">
+        <div>
+            {% csrf_token %}<br>
+            {{form}}
+            <input type="submit" value="submit">
+        </div>    
+    </form>
+{% endif %}
+
+
+
+
+</html>

@@ -1,0 +1,95 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Upload || Subadmin</title>
+    <style>
+        * {
+            font-family: sans-serif;
+            padding: 0;
+            margin: 0;
+        }
+        div {
+            width: 190px;
+            margin-top: 20px;
+
+        }
+        .title, .name{
+            width: 300px;
+            height: 30px; 
+            margin-top: 13px;
+            margin-bottom: 13px;
+        }
+        .message {
+            height: 150px;
+            max-height: 200px;
+            max-width: 300px;
+            min-width: 299px;
+            margin-top: 13px;
+            margin-bottom: 13px;
+        }
+        nav{
+            background-color: black;
+            color: white;
+            height: 50px;
+        }
+        input {
+            padding: 7px;
+
+        }
+        input {
+            padding: 9px 13px;
+        }
+        a{
+            margin-top: 19px;
+            margin-left: 30px;
+        }
+        nav a{
+            float: right;
+            color: white;
+            margin-right: 75px;
+        }
+        nav h3 {
+            float: left;
+            margin-top: 17px;
+            margin-left: 12px;;
+        }
+        .btn {
+            margin-left: 30px;
+        }
+        header {
+            width: 390px;
+        }
+        p {
+            margin-top: 12px;
+            margin-left: 30px;
+            margin-bottom: 12px;
+        }
+       
+
+       
+    </style>
+</head>
+<nav>
+    <header>
+        {% if user.is_authenticated %}
+         <h3>User upload || Subadmin</h3>
+         <a href='{% url 'logout' %}'>Logout</a>
+         {% else %}
+         <h3>User upload || Subadmin</h3>
+         {% endif %}
+     </header>
+</nav>
+{% if user.is_authenticated %}
+<form method="POST" enctype="multipart/form-data">
+    <div>
+        {% csrf_token %}<br>
+       {{form.as_p}}
+       <p><input type="submit" value="submit"></p>
+    </div>    
+</form>
+{% else %}
+ <p class="head">You are not logged in</p>
+<p>Please Login To visit the Subadmin Uplaod Panel.</p>
+<a href="{% url 'login' %}">Login again</a>
+{% endif %}
+</html>
